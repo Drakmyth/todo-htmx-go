@@ -1,0 +1,10 @@
+* text=auto
+
+.gitattributes text export-ignore
+.gitignore     text export-ignore
+
+*.go   text diff=golang
+*.html text diff=html
+*.json text
+*.md   text diff=markdown
+*.mod  text
