@@ -3,9 +3,11 @@
     <head>
         <meta charset="UTF-8" />
         <title>Document</title>
+        <script src="https://unpkg.com/htmx.org@1.9.4" integrity="sha384-zUfuhFKKZCbHTY6aRR46gxiqszMk5tcHjsVFxnUo8VMus4kHGVdIYVbOYYNlKmHV" crossorigin="anonymous"></script>
     </head>
 
     <body>
         <p>Hello World!</p>
+        <button hx-post="/clicked" hx-swap="outerHTML">Click Me</button>
     </body>
 </html>
