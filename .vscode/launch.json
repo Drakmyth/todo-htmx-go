@@ -7,8 +7,8 @@
             "request": "launch",
             "mode": "auto",
             "console": "internalConsole",
-            "output": "todo-htmx-go-debug",
-            "program": "${fileDirname}"
+            "output": "tmp/todo-htmx-go-debug",
+            "program": "server.go"
         }
     ]
 }

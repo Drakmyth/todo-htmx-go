@@ -1,6 +1,8 @@
 # Go
+tmp/
 *.exe
+*.log
 
 # VSCode
-.vscode/*
+.vscode/
 !.vscode/launch.json

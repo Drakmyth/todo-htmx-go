@@ -9,3 +9,4 @@
 *.json text
 *.md   text diff=markdown
 *.mod  text
+*.toml text
