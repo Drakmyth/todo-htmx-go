@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"log"
 	"net/http"
+	"text/template"
 )
 
 func main() {
@@ -12,8 +13,8 @@ func main() {
 	addHandler := func(w http.ResponseWriter, r *http.Request) {
 		r.ParseForm()
 		item := r.Form.Get("item")
-		fmt.Print(item)
-		fmt.Fprintf(w, "<li>%s</li>", item)
+		tmpl, _ := template.ParseFiles("./templates/item.tmpl.html")
+		tmpl.Execute(w, item)
 	}
 	rootHandler := http.FileServer(http.Dir("public"))
 
