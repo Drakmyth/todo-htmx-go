@@ -8,6 +8,13 @@
 
     <body>
         <p>Hello World!</p>
-        <button hx-post="/clicked" hx-swap="outerHTML">Click Me</button>
+        <form hx-post="/add" hx-target="#item-list" hx-swap="beforeend">
+            <button type="submit">Add Item</button>
+            <input type="text" name="item"/>
+        </form>
+        <p>Items</p>
+        <ul id="item-list">
+
+        </ul>
     </body>
 </html>

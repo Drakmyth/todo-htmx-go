@@ -9,13 +9,16 @@ import (
 func main() {
 	fmt.Println("Hello World!")
 
-	h1 := http.FileServer(http.Dir("public"))
-	h2 := func(w http.ResponseWriter, r *http.Request) {
-		w.Write([]byte("<p>I've Been Clicked!</p>"))
+	addHandler := func(w http.ResponseWriter, r *http.Request) {
+		r.ParseForm()
+		item := r.Form.Get("item")
+		fmt.Print(item)
+		fmt.Fprintf(w, "<li>%s</li>", item)
 	}
+	rootHandler := http.FileServer(http.Dir("public"))
 
-	http.HandleFunc("/clicked", h2)
-	http.Handle("/", h1)
+	http.HandleFunc("/add", addHandler)
+	http.Handle("/", rootHandler)
 
 	log.Fatal(http.ListenAndServe(":8000", nil))
 }
