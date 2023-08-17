@@ -8,5 +8,8 @@
 *.html text diff=html
 *.json text
 *.md   text diff=markdown
-*.mod  text
+*.mod  text eol=lf
+*.sum  text eol=lf
 *.toml text
+
+*.svg binary

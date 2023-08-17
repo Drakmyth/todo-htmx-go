@@ -1,1 +1,16 @@
-<li>{{ . }}</li>
+<li>
+    <span>{{ .Description }}</span>
+    <form>
+        <input type="hidden" name="item-id" value="{{ .Id }}"/>
+        <button>
+            <svg height="24" width="24">
+                <use xlink:href="../icons/edit.svg#icon"></use>
+            </svg>
+        </button>
+        <button>
+            <svg height="24" width="24">
+                <use xlink:href="../icons/trash.svg#icon"></use>
+            </svg>
+        </button>
+    </form>
+</li>

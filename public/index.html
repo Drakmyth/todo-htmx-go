@@ -1,7 +1,8 @@
 <!DOCTYPE html>
-<html>
+<html lang="en-us">
     <head>
         <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
         <title>Document</title>
         <script src="https://unpkg.com/htmx.org@1.9.4" integrity="sha384-zUfuhFKKZCbHTY6aRR46gxiqszMk5tcHjsVFxnUo8VMus4kHGVdIYVbOYYNlKmHV" crossorigin="anonymous"></script>
     </head>
@@ -10,7 +11,8 @@
         <p>Hello World!</p>
         <form hx-post="/add" hx-target="#item-list" hx-swap="beforeend">
             <button type="submit">Add Item</button>
-            <input type="text" name="item"/>
+            <label for="add-description">Description:</label>
+            <input type="text" id="add-description" name="description"/>
         </form>
         <p>Items</p>
         <ul id="item-list">
