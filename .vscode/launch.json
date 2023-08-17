@@ -7,7 +7,7 @@
             "request": "launch",
             "mode": "auto",
             "console": "internalConsole",
-            "output": "tmp/todo-htmx-go-debug",
+            "output": "bin/todo-htmx-go-debug",
             "program": "server.go"
         }
     ]
