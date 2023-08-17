@@ -6,6 +6,7 @@ A proof-of-concept TODO app to explore the cababilities of [HTMX](https://htmx.o
 
 * [![Htmx][htmx-shield]][htmx-url]
 * [![Golang][golang-shield]][golang-url]
+* [![TailwindCSS][tailwindcss-shield]][tailwindcss-url]
 
 ## Getting Started
 
@@ -58,3 +59,6 @@ Distributed under the MIT License. See [LICENSE.md](./LICENSE.md) for more infor
 [htmx-shield]: https://img.shields.io/badge/htmx-4470d2?style=for-the-badge
 [golang-url]: https://go.dev
 [golang-shield]: https://img.shields.io/badge/golang-09657c?style=for-the-badge&logo=go&logoColor=79d2fa
+[tailwindcss-url]: https://tailwindcss.com/
+[tailwindcss-shield]: https://img.shields.io/badge/Tailwind%20CSS-0b111f?style=for-the-badge&logo=tailwindcss&logoColor=26bcf5
+
