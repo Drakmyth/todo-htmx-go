@@ -17,24 +17,41 @@
         />
     </head>
 
-    <body>
-        <p>Hello World!</p>
-        <form hx-post="/add" hx-target="#item-list" hx-swap="beforeend">
-            <button
-                type="submit"
-                class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-            >
-                Add Item
-            </button>
-            <label for="add-description">Description</label>
-            <input
-                type="text"
-                id="add-description"
-                name="description"
-                class="border"
-            />
-        </form>
-        <p>Items</p>
-        <ul id="item-list"></ul>
+    <body class="flex flex-col h-screen">
+        <div id="page-header" class="h-24 p-8 bg-gray-300">
+            <span class="text-4xl font-bold">TODO</span>
+        </div>
+        <div id="page-body" class="flex-grow p-8 flex flex-row">
+            <!-- Tailwind v2 doesn't support flex-basis, so we do it ourselves -->
+            <div id="tasks-panel" class="bg-gray-300 rounded-lg overflow-hidden" style="flex-basis: 25%">
+                <div id="tasks-panel-header" class="flex flex-row items-center gap-3 bg-gray-400 p-3">
+                    <svg height="24" width="24">
+                        <use xlink:href="../icons/list-bullet.svg#icon"></use>
+                    </svg>
+                    <span class="text-xl">Today's Tasks</span>
+                    <svg height="24" width="24" class="ml-auto">
+                        <use xlink:href="../icons/plus.svg#icon"></use>
+                    </svg>
+                </div>
+                <div id="tasks-panel-body">
+                    <ul id="item-list"></ul>
+                    <form hx-post="/add" hx-target="#item-list" hx-swap="beforeend">
+                        <button
+                            type="submit"
+                            class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full "
+                        >
+                            Add Item
+                        </button>
+                        <label for="add-description">Description</label>
+                        <input
+                            type="text"
+                            id="add-description"
+                            name="description"
+                            class="border py-2 px-4 rounded-full"
+                        />
+                    </form>
+                </div>
+            </div>
+        </div>
     </body>
 </html>
