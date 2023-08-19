@@ -9,7 +9,7 @@ import (
 func main() {
 	fmt.Println("Hello World!")
 
-	http.HandleFunc("/tasks", taskHandler)
+	registerTaskEndpoints()
 	http.Handle("/", http.FileServer(http.Dir("public")))
 
 	log.Fatal(http.ListenAndServe(":8000", nil))

@@ -28,3 +28,7 @@ var taskHandler = func(w http.ResponseWriter, r *http.Request) {
 	tmpl, _ := template.ParseFiles("./templates/item.tmpl.html")
 	tmpl.Execute(w, task)
 }
+
+var registerTaskEndpoints = func() {
+	http.HandleFunc("/tasks", taskHandler)
+}
