@@ -27,10 +27,9 @@ func main() {
 		tmpl, _ := template.ParseFiles("./templates/item.tmpl.html")
 		tmpl.Execute(w, item)
 	}
-	rootHandler := http.FileServer(http.Dir("public"))
 
 	http.HandleFunc("/add", addHandler)
-	http.Handle("/", rootHandler)
+	http.Handle("/", http.FileServer(http.Dir("public")))
 
 	log.Fatal(http.ListenAndServe(":8000", nil))
 }
