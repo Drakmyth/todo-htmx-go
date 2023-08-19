@@ -14,16 +14,22 @@ type Task struct {
 	Description string
 }
 
+var tasks = make(map[uuid.UUID]Task)
+
 func main() {
 	fmt.Println("Hello World!")
 
 	addHandler := func(w http.ResponseWriter, r *http.Request) {
 		r.ParseForm()
+
+		id := uuid.New()
 		description := r.Form.Get("description")
 		task := Task{
-			Id:          uuid.New(),
+			Id:          id,
 			Description: description,
 		}
+		tasks[id] = task
+
 		tmpl, _ := template.ParseFiles("./templates/item.tmpl.html")
 		tmpl.Execute(w, task)
 	}
