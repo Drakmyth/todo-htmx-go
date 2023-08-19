@@ -1,8 +1,10 @@
-<li>
-    <span>{{ .Description }}</span>
-    <!-- <form>
-        <input type="hidden" name="item-id" value="{{ .Id }}"/>
-        <button>
+<li class="flex flex-row items-center gap-3">
+    <form>
+        <input type="hidden" name="item-id" value="{{ .Id }}" />
+        <button class="h-6 w-6 border border-black rounded"></button>
+        <span class="text-xl">{{ .Description }}</span>
+    </form>
+    <!-- <button>
             <svg height="24" width="24">
                 <use xlink:href="../icons/edit.svg#icon"></use>
             </svg>
@@ -11,6 +13,5 @@
             <svg height="24" width="24">
                 <use xlink:href="../icons/trash.svg#icon"></use>
             </svg>
-        </button>
-    </form> -->
+        </button> -->
 </li>

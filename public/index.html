@@ -33,8 +33,8 @@
                         <use xlink:href="../icons/plus.svg#icon"></use>
                     </svg>
                 </div>
-                <div id="tasks-panel-body">
-                    <ul id="item-list"></ul>
+                <div id="tasks-panel-body" class="p-4">
+                    <ul id="item-list" class="flex flex-col gap-4"></ul>
                     <form hx-post="/add" hx-target="#item-list" hx-swap="beforeend">
                         <button
                             type="submit"
