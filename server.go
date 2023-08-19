@@ -9,7 +9,7 @@ import (
 	"github.com/google/uuid"
 )
 
-type Item struct {
+type Task struct {
 	Id          uuid.UUID
 	Description string
 }
@@ -20,12 +20,12 @@ func main() {
 	addHandler := func(w http.ResponseWriter, r *http.Request) {
 		r.ParseForm()
 		description := r.Form.Get("description")
-		item := Item{
+		task := Task{
 			Id:          uuid.New(),
 			Description: description,
 		}
 		tmpl, _ := template.ParseFiles("./templates/item.tmpl.html")
-		tmpl.Execute(w, item)
+		tmpl.Execute(w, task)
 	}
 
 	http.HandleFunc("/add", addHandler)
