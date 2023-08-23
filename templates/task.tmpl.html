@@ -1,7 +1,7 @@
 {{ define "task" }}
 <li class="flex flex-row items-center gap-3">
     <form>
-        <input type="hidden" name="item-id" value="{{ .Id }}" />
+        <input type="hidden" name="task-id" value="{{ .Id }}" />
         <button class="h-6 w-6 border border-black rounded"></button>
         <span class="text-xl">{{ .Description }}</span>
         <button
@@ -29,7 +29,7 @@
 {{ define "edit-task" }}
 <li class="flex flex-row items-center gap-3">
     <form>
-        <input type="hidden" name="item-id" value="{{ .Id }}" />
+        <input type="hidden" name="task-id" value="{{ .Id }}" />
         <button class="h-6 w-6 border border-black rounded" disabled></button>
         <input type="text" name="description" value="{{ .Description }}" />
         <button>
