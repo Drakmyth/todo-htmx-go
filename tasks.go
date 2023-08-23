@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"net/http"
 	"text/template"
 
@@ -14,21 +15,25 @@ type Task struct {
 
 var tasks = make(map[uuid.UUID]Task)
 
-var taskHandler = func(w http.ResponseWriter, r *http.Request) {
-	r.ParseForm()
+func NewTaskMux() *http.ServeMux {
+	mux := http.NewServeMux()
 
-	id := uuid.New()
-	description := r.Form.Get("description")
-	task := Task{
-		Id:          id,
-		Description: description,
+	createTask := func(w http.ResponseWriter, r *http.Request) {
+		fmt.Print("Hello!")
+		r.ParseForm()
+
+		id := uuid.New()
+		description := r.Form.Get("description")
+		task := Task{
+			Id:          id,
+			Description: description,
+		}
+		tasks[id] = task
+
+		tmpl, _ := template.ParseFiles("./templates/item.tmpl.html")
+		tmpl.Execute(w, task)
 	}
-	tasks[id] = task
 
-	tmpl, _ := template.ParseFiles("./templates/item.tmpl.html")
-	tmpl.Execute(w, task)
-}
-
-var registerTaskEndpoints = func() {
-	http.HandleFunc("/tasks", taskHandler)
+	mux.HandleFunc("/", createTask)
+	return mux
 }

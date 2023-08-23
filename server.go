@@ -9,8 +9,11 @@ import (
 func main() {
 	fmt.Println("Hello World!")
 
-	registerTaskEndpoints()
-	http.Handle("/", http.FileServer(http.Dir("public")))
+	mux := http.NewServeMux()
+	taskMux := NewTaskMux()
 
-	log.Fatal(http.ListenAndServe(":8000", nil))
+	mux.Handle("/tasks/", http.StripPrefix("/tasks", taskMux))
+	mux.Handle("/", http.FileServer(http.Dir("public")))
+
+	log.Fatal(http.ListenAndServe(":8000", mux))
 }
