@@ -3,7 +3,8 @@ package main
 import (
 	"fmt"
 	"net/http"
-	"text/template"
+	"slices"
+	"time"
 
 	"github.com/google/uuid"
 	"github.com/jba/muxpatterns"
@@ -12,6 +13,7 @@ import (
 
 type Task struct {
 	Id          uuid.UUID
+	Created     time.Time
 	Description string
 }
 
@@ -36,16 +38,17 @@ func createTask(w http.ResponseWriter, r *http.Request) {
 	r.ParseForm()
 
 	id := uuid.New()
+	now := time.Now()
 	description := r.Form.Get("description")
 	task := Task{
 		Id:          id,
+		Created:     now,
 		Description: description,
 	}
 	tasks[id] = task
 
 	fmt.Printf("Created %s\n", task)
 
-	tmpl, _ := template.ParseFiles("./templates/task.tmpl.html")
 	tmpl.ExecuteTemplate(w, "task", task)
 }
 
@@ -55,7 +58,6 @@ func getTask(w http.ResponseWriter, r *http.Request) {
 	fmt.Printf("Retrieving %s\n", taskId)
 	task := tasks[taskId]
 
-	tmpl, _ := template.ParseFiles("./templates/task.tmpl.html")
 	tmpl.ExecuteTemplate(w, "task", task)
 }
 
@@ -65,18 +67,19 @@ func getEditTask(w http.ResponseWriter, r *http.Request) {
 	fmt.Printf("Editing %s\n", taskId)
 	task := tasks[taskId]
 
-	tmpl, _ := template.ParseFiles("./templates/task.tmpl.html")
 	tmpl.ExecuteTemplate(w, "edit-task", task)
 }
 
 func getTaskList(w http.ResponseWriter, r *http.Request) {
 	fmt.Printf("Retrieving %d tasks...\n", len(tasks))
 
+	taskValues := maps.Values(tasks)
+	slices.SortFunc(taskValues, func(a, b Task) int { return a.Created.Compare(b.Created) })
+
 	taskList := TaskList{
-		Tasks: maps.Values(tasks),
+		Tasks: taskValues,
 	}
 
-	tmpl, _ := template.ParseFiles("./templates/task.tmpl.html")
 	tmpl.ExecuteTemplate(w, "task-list", taskList)
 }
 

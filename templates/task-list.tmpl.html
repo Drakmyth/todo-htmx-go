@@ -1,0 +1,5 @@
+{{ define "task-list" }}
+<ul id="task-list" class="flex flex-col gap-4">
+    {{ range .Tasks }} {{ template "task" . }} {{ end }}
+</ul>
+{{ end }}
