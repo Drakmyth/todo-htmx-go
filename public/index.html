@@ -40,11 +40,17 @@
                     </svg>
                 </div>
                 <div id="tasks-panel-body" class="p-4">
-                    <ul id="item-list" class="flex flex-col gap-4"></ul>
+                    <ul
+                        id="task-list"
+                        class="flex flex-col gap-4"
+                        hx-get="/tasks/"
+                        hx-trigger="load once"
+                        hx-swap="outerHTML"
+                    ></ul>
                     <!-- See https://github.com/golang/go/issues/60769 for why the trailing slash is necessary -->
                     <form
                         hx-post="/tasks/"
-                        hx-target="#item-list"
+                        hx-target="#task-list"
                         hx-swap="beforeend"
                     >
                         <button

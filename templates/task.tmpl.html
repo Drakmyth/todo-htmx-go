@@ -1,3 +1,4 @@
+{{ define "task" }}
 <li class="flex flex-row items-center gap-3">
     <form>
         <input type="hidden" name="item-id" value="{{ .Id }}" />
@@ -15,3 +16,12 @@
             </svg>
         </button> -->
 </li>
+{{ end }}
+
+{{ define "task-list" }}
+<ul id="task-list" class="flex flex-col gap-4">
+    {{ range .Tasks }}
+        {{ template "task" . }}
+    {{ end }}
+</ul>
+{{ end }}
