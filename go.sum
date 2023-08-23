@@ -1,4 +1,6 @@
 github.com/google/uuid v1.3.0 h1:t6JiXgmwXMjEs8VusXIJk2BXHsn+wx8BZdTaoZ5fu7I=
 github.com/google/uuid v1.3.0/go.mod h1:TIyPZe4MgqvfeYDBFedMoGGpEw/LqOeaOT+nhxU+yHo=
+github.com/jba/muxpatterns v0.2.0 h1:Hh5KZaEeaQPMzedDr3XgZBpW2BhYohCB5vf0FgXTyG4=
+github.com/jba/muxpatterns v0.2.0/go.mod h1:77+op56At17SXLuQrR46FWJybINlMcj2E/KrDhS5JiY=
 golang.org/x/exp v0.0.0-20230817173708-d852ddb80c63 h1:m64FZMko/V45gv0bNmrNYoDEq8U5YUhetc9cBWKS1TQ=
 golang.org/x/exp v0.0.0-20230817173708-d852ddb80c63/go.mod h1:0v4NqG35kSWCMzLaMeX+IQrlSnVE/bqGSyC2cz/9Le8=

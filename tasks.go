@@ -6,6 +6,7 @@ import (
 	"text/template"
 
 	"github.com/google/uuid"
+	"github.com/jba/muxpatterns"
 	"golang.org/x/exp/maps"
 )
 
@@ -20,10 +21,12 @@ type TaskList struct {
 
 var tasks = make(map[uuid.UUID]Task)
 
-func NewTaskMux() *http.ServeMux {
-	mux := http.NewServeMux()
+func NewTaskMux() *muxpatterns.ServeMux {
+	mux := muxpatterns.NewServeMux()
 
-	mux.HandleFunc("/", taskRootHandler)
+	mux.HandleFunc("DELETE /{taskId}", deleteTask)
+	mux.HandleFunc("POST /", createTask)
+	mux.HandleFunc("GET /", getTaskList)
 	return mux
 }
 
@@ -55,13 +58,10 @@ func getTaskList(w http.ResponseWriter, r *http.Request) {
 	tmpl.ExecuteTemplate(w, "task-list", taskList)
 }
 
-func taskRootHandler(w http.ResponseWriter, r *http.Request) {
-	switch r.Method {
-	case http.MethodPost:
-		createTask(w, r)
-	case http.MethodGet:
-		getTaskList(w, r)
-	default:
-		methodNotAllowedHandler(w, r)
-	}
+func deleteTask(w http.ResponseWriter, r *http.Request) {
+	id, _ := uuid.Parse(taskMux.PathValue(r, "taskId"))
+
+	fmt.Printf("Deleting %s\n", id)
+	delete(tasks, id)
+
 }

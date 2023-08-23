@@ -4,15 +4,15 @@
         <input type="hidden" name="item-id" value="{{ .Id }}" />
         <button class="h-6 w-6 border border-black rounded"></button>
         <span class="text-xl">{{ .Description }}</span>
-    </form>
-    <!-- <button>
-            <svg height="24" width="24">
-                <use xlink:href="../icons/edit.svg#icon"></use>
+        <button hx-delete="/tasks/{{ .Id }}" hx-target="closest li" hx-swap="delete">
+            <svg class="h-6 w-6">
+                <use xlink:href="../icons/trash.svg#icon"></use>
             </svg>
         </button>
-        <button>
-            <svg height="24" width="24">
-                <use xlink:href="../icons/trash.svg#icon"></use>
+    </form>
+    <!-- <button>
+        <svg height="24" width="24">
+                <use xlink:href="../icons/edit.svg#icon"></use>
             </svg>
         </button> -->
 </li>
