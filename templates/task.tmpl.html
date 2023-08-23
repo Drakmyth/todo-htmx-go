@@ -4,24 +4,54 @@
         <input type="hidden" name="item-id" value="{{ .Id }}" />
         <button class="h-6 w-6 border border-black rounded"></button>
         <span class="text-xl">{{ .Description }}</span>
-        <button hx-delete="/tasks/{{ .Id }}" hx-target="closest li" hx-swap="delete">
+        <button
+            hx-get="/tasks/{{ .Id }}/edit"
+            hx-target="closest li"
+            hx-swap="outerHTML"
+        >
+            <svg class="h-6 w-6">
+                <use xlink:href="../icons/edit.svg#icon"></use>
+            </svg>
+        </button>
+        <button
+            hx-delete="/tasks/{{ .Id }}"
+            hx-target="closest li"
+            hx-swap="delete"
+        >
             <svg class="h-6 w-6">
                 <use xlink:href="../icons/trash.svg#icon"></use>
             </svg>
         </button>
     </form>
-    <!-- <button>
-        <svg height="24" width="24">
-                <use xlink:href="../icons/edit.svg#icon"></use>
+</li>
+{{ end }}
+
+{{ define "edit-task" }}
+<li class="flex flex-row items-center gap-3">
+    <form>
+        <input type="hidden" name="item-id" value="{{ .Id }}" />
+        <button class="h-6 w-6 border border-black rounded" disabled></button>
+        <input type="text" name="description" value="{{ .Description }}" />
+        <button>
+            <svg class="h-6 w-6">
+                <use xlink:href="../icons/check.svg#icon"></use>
             </svg>
-        </button> -->
+        </button>
+        <button
+            hx-get="/tasks/{{ .Id }}"
+            hx-target="closest li"
+            hx-swap="outerHTML"
+        >
+            <svg class="h-6 w-6">
+                <use xlink:href="../icons/x.svg#icon"></use>
+            </svg>
+        </button>
+    </form>
 </li>
 {{ end }}
 
 {{ define "task-list" }}
 <ul id="task-list" class="flex flex-col gap-4">
-    {{ range .Tasks }}
-        {{ template "task" . }}
-    {{ end }}
+    {{ range .Tasks }} {{ template "task" . }} {{ end }}
 </ul>
 {{ end }}
