@@ -8,7 +8,7 @@
             "mode": "auto",
             "console": "internalConsole",
             "output": "bin/todo-htmx-go-debug",
-            "program": "server.go"
+            "program": "${workspaceFolder}"
         }
     ]
 }
