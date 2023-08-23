@@ -17,3 +17,8 @@ func main() {
 
 	log.Fatal(http.ListenAndServe(":8000", mux))
 }
+
+func methodNotAllowedHandler(w http.ResponseWriter, r *http.Request) {
+	w.WriteHeader(http.StatusMethodNotAllowed)
+	fmt.Fprint(w, "405 Method Not Allowed")
+}

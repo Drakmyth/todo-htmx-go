@@ -18,22 +18,31 @@ var tasks = make(map[uuid.UUID]Task)
 func NewTaskMux() *http.ServeMux {
 	mux := http.NewServeMux()
 
-	createTask := func(w http.ResponseWriter, r *http.Request) {
-		fmt.Print("Hello!")
-		r.ParseForm()
-
-		id := uuid.New()
-		description := r.Form.Get("description")
-		task := Task{
-			Id:          id,
-			Description: description,
-		}
-		tasks[id] = task
-
-		tmpl, _ := template.ParseFiles("./templates/item.tmpl.html")
-		tmpl.Execute(w, task)
-	}
-
-	mux.HandleFunc("/", createTask)
+	mux.HandleFunc("/", taskRootHandler)
 	return mux
+}
+
+func createTask(w http.ResponseWriter, r *http.Request) {
+	fmt.Print("Hello!")
+	r.ParseForm()
+
+	id := uuid.New()
+	description := r.Form.Get("description")
+	task := Task{
+		Id:          id,
+		Description: description,
+	}
+	tasks[id] = task
+
+	tmpl, _ := template.ParseFiles("./templates/item.tmpl.html")
+	tmpl.Execute(w, task)
+}
+
+func taskRootHandler(w http.ResponseWriter, r *http.Request) {
+	switch r.Method {
+	case http.MethodPost:
+		createTask(w, r)
+	default:
+		methodNotAllowedHandler(w, r)
+	}
 }

@@ -41,7 +41,7 @@
                 </div>
                 <div id="tasks-panel-body" class="p-4">
                     <ul id="item-list" class="flex flex-col gap-4"></ul>
-                    <!-- See https://github.com/golang/go/issues/60769 why tailing slash is necessary -->
+                    <!-- See https://github.com/golang/go/issues/60769 for why the trailing slash is necessary -->
                     <form
                         hx-post="/tasks/"
                         hx-target="#item-list"
